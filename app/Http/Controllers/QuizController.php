@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Folder extends Controller
+class QuizController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        FolderResource::collection(Folder::all());
+        //
     }
 
     /**
@@ -27,13 +27,7 @@ class Folder extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string',
-            'description' => 'string|nullable',
-        ]);
-
-        $folder = Folder::create($validated);
-        return new FolderResource($folder);
+        //
     }
 
     /**
