@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Quiz;
 
 class QuizController extends Controller
 {
@@ -11,15 +12,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Quiz::all();
     }
 
     /**
@@ -27,7 +20,18 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate 
+        $validated = $request->validate([
+            'folder_id' => 'required',
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
+        $quiz = Quiz::create($validated); 
+        return response()->json([
+            'message' => 'Quiz created successfully',
+            'quiz' => $quiz
+        ], 201);
     }
 
     /**
